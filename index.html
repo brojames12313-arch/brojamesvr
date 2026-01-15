@@ -47,12 +47,14 @@
 
 <body>
 
+  <!-- Header with YouTube profile pic -->
   <header>
     <img src="https://yt3.googleusercontent.com/95iYSE2UP41q5Kw5IvmGuZyu2ipRJ0LIFUqjiHdtJdxOAQhI34CgmkiaY-7Erb56mkL7W3ib=s160-c-k-c0x00ffffff-no-rj" alt="BroJamesVR Logo">
     <h1>BroJamesVR</h1>
     <p>Gorilla Tag VR Content Creator</p>
   </header>
 
+  <!-- Video Section -->
   <section class="videos">
     <h2>Watch My Latest Video</h2>
     <a href="https://www.youtube.com/watch?v=K774EMV6kfE" target="_blank">
@@ -61,9 +63,10 @@
     <p><a href="https://www.youtube.com/@brojamesvr" target="_blank">Visit my channel</a></p>
   </section>
 
+  <!-- Contact Form -->
   <section class="contact-form">
     <h2>Contact Me</h2>
-    <form action="https://formspree.io/f/maqqnokg" method="POST">
+    <form id="contact-form" action="https://formspree.io/f/maqqnokg" method="POST">
       <input type="text" name="name" placeholder="Your Name" required><br>
       <input type="email" name="email" placeholder="Your Email" required><br>
       <textarea name="message" rows="5" placeholder="Your Message" required></textarea><br>
@@ -72,11 +75,13 @@
     <p id="success-message" style="display:none; color:#ff0000;">Message sent! Thank you :)</p>
   </section>
 
+  <!-- Formspree AJAX Script -->
   <script>
-    const form = document.querySelector("form");
+    const form = document.getElementById("contact-form");
     const success = document.getElementById("success-message");
+
     form.addEventListener("submit", function(e){
-      e.preventDefault();
+      e.preventDefault(); // prevent page refresh
       fetch(form.action, {
         method: "POST",
         body: new FormData(form),
@@ -88,6 +93,8 @@
         } else {
           alert("Oops! There was a problem sending your message.");
         }
+      }).catch(() => {
+        alert("Oops! There was a problem sending your message.");
       });
     });
   </script>
