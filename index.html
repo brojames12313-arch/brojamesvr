@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BroJamesVR</title>
+  <style>
+    body { 
+      font-family: Arial, sans-serif; 
+      text-align: center; 
+      background: linear-gradient(135deg, #0f0f0f, #1a1a1a); 
+      color: white; 
+      margin:0; 
+      padding:0; 
+    }
+    header { 
+      background: #1e1e1e; 
+      padding: 30px; 
+      border-bottom: 2px solid #ff0000; 
+      display: flex; 
+      flex-direction: column; 
+      align-items: center; 
+      gap: 10px;
+    }
+    header img { 
+      width: 120px; 
+      border-radius: 50%; 
+      border: 2px solid #ff0000; 
+    }
+    a { color: #ff0000; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .videos { margin-top: 30px; }
+    .videos img { border-radius: 10px; cursor: pointer; transition: transform 0.2s; max-width: 90%; height: auto; }
+    .videos p { margin-top: 10px; }
+    .contact-form { margin-top: 40px; }
+    input, textarea { width: 90%; padding: 10px; margin-top: 10px; border-radius: 5px; border: none; }
+    button { padding: 10px 20px; margin-top: 10px; border-radius: 5px; border: none; background: #ff0000; color: white; cursor: pointer; }
+    button:hover { background: #cc0000; }
+    /* Mobile responsiveness */
+    @media (max-width: 600px) {
+      .videos img { width: 100%; height: auto; }
+      input, textarea, button { width: 100%; }
+      header img { width: 80px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <img src="https://yt3.googleusercontent.com/95iYSE2UP41q5Kw5IvmGuZyu2ipRJ0LIFUqjiHdtJdxOAQhI34CgmkiaY-7Erb56mkL7W3ib=s160-c-k-c0x00ffffff-no-rj" alt="BroJamesVR Logo">
+    <h1>BroJamesVR</h1>
+    <p>Gorilla Tag VR Content Creator</p>
+  </header>
+
+  <section class="videos">
+    <h2>Watch My Latest Video</h2>
+    <a href="https://www.youtube.com/watch?v=K774EMV6kfE" target="_blank">
+      <img src="https://img.youtube.com/vi/K774EMV6kfE/0.jpg" alt="BroJamesVR Video">
+    </a>
+    <p><a href="https://www.youtube.com/@brojamesvr" target="_blank">Visit my channel</a></p>
+  </section>
+
+  <section class="contact-form">
+    <h2>Contact Me</h2>
+    <form action="https://formspree.io/f/maqqnokg" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required><br>
+      <input type="email" name="email" placeholder="Your Email" required><br>
+      <textarea name="message" rows="5" placeholder="Your Message" required></textarea><br>
+      <button type="submit">Send Message</button>
+    </form>
+    <p id="success-message" style="display:none; color:#ff0000;">Message sent! Thank you :)</p>
+  </section>
+
+  <script>
+    const form = document.querySelector("form");
+    const success = document.getElementById("success-message");
+    form.addEventListener("submit", function(e){
+      e.preventDefault();
+      fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      }).then(response => {
+        if (response.ok) {
+          success.style.display = "block";
+          form.reset();
+        } else {
+          alert("Oops! There was a problem sending your message.");
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
