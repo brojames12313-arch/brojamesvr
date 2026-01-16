@@ -1,138 +1,207 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BroJamesVR</title>
-  <style>
-    body { 
-      font-family: Arial, sans-serif; 
-      text-align: center; 
-      background: linear-gradient(135deg, #0f0f0f, #1a1a1a); 
-      color: white; 
-      margin:0; 
-      padding:0; 
-    }
-    header { 
-      background: #1e1e1e; 
-      padding: 30px; 
-      border-bottom: 2px solid #ff0000; 
-      display: flex; 
-      flex-direction: column; 
-      align-items: center; 
-      gap: 10px;
-    }
-    header img { 
-      width: 120px; 
-      border-radius: 50%; 
-      border: 2px solid #ff0000; 
-    }
-    a { color: #ff0000; text-decoration: none; }
-    a:hover { text-decoration: underline; }
+<meta charset="UTF-8">
+<title>BroJamesVR</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  margin:0;
+  font-family: Arial, sans-serif;
+  background: radial-gradient(circle at top, #111, #000);
+  color:white;
+  scroll-behavior: smooth;
+  text-align:center;
+}
+a { text-decoration:none; color:inherit; }
 
-    section { margin: 40px 20px; }
+header {
+  background: linear-gradient(90deg,#ff0000,#ff5500);
+  padding:40px 20px;
+}
+header img {
+  width:120px;
+  border-radius:50%;
+  border:4px solid white;
+}
+header h1 { margin:15px 0 5px; }
+header p { margin:0 0 15px; }
+header .btn {
+  background:#fff;
+  color:#ff0000;
+  padding:12px 25px;
+  border-radius:25px;
+  font-weight:bold;
+}
+header .btn:hover { background:#ffdcdc; }
 
-    /* YouTube video */
-    .videos img { border-radius: 10px; cursor: pointer; transition: transform 0.2s; max-width: 90%; height: auto; }
-    .videos img:hover { transform: scale(1.05); }
+nav {
+  background:#111;
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  padding:15px;
+}
+nav a { color:white; font-weight:bold; }
+nav a:hover { color:#ff0000; }
 
-    /* About section */
-    .about p { font-size: 18px; max-width: 800px; margin: 0 auto; line-height: 1.5; }
+.section { padding:60px 20px; }
+.card-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:20px;
+  max-width:900px;
+  margin:auto;
+}
+.card {
+  background:#111;
+  padding:20px;
+  border-radius:12px;
+  box-shadow:0 0 20px #ff000044;
+  transition:0.3s;
+  position:relative;
+  overflow:hidden;
+}
+.card:hover { transform:translateY(-6px); }
+.card img { transition:0.3s; }
+.card:hover img { transform:scale(1.05); }
+.card p { margin:10px 0 0; font-weight:bold; }
+.btn {
+  background:#ff0000;
+  color:white;
+  padding:12px 30px;
+  border-radius:25px;
+  display:inline-block;
+  margin-top:15px;
+}
+.btn:hover { background:#cc0000; }
 
-    /* Social media */
-    .social { display: flex; justify-content: center; gap: 20px; margin-top: 20px; }
-    .social img { width: 60px; transition: transform 0.2s; cursor: pointer; }
-    .social img:hover { transform: scale(1.2); }
+.social-icons {
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  margin-top:20px;
+}
+.social-icons img {
+  width:50px;
+  transition:0.3s;
+}
+.social-icons img:hover { transform:scale(1.2); }
 
-    /* Contact form */
-    .contact-form input, .contact-form textarea { width: 90%; padding: 10px; margin-top: 10px; border-radius: 5px; border: none; }
-    .contact-form button { padding: 10px 20px; margin-top: 10px; border-radius: 5px; border: none; background: #ff0000; color: white; cursor: pointer; }
-    .contact-form button:hover { background: #cc0000; }
+footer {
+  background:#111;
+  padding:30px 20px;
+  color:#888;
+  text-align:center;
+}
 
-    footer { margin-top: 50px; padding: 20px; background: #1e1e1e; border-top: 2px solid #ff0000; }
-
-    /* Mobile responsiveness */
-    @media (max-width: 600px) {
-      header img { width: 80px; }
-      .social img { width: 50px; }
-      .contact-form input, .contact-form textarea, .contact-form button { width: 100%; }
-    }
-  </style>
+iframe { border:none; border-radius:12px; }
+</style>
 </head>
 
 <body>
 
-  <!-- Header -->
-  <header>
-    <img src="https://yt3.googleusercontent.com/95iYSE2UP41q5Kw5IvmGuZyu2ipRJ0LIFUqjiHdtJdxOAQhI34CgmkiaY-7Erb56mkL7W3ib=s160-c-k-c0x00ffffff-no-rj" alt="BroJamesVR Logo">
-    <h1>BroJamesVR</h1>
-    <p>Gorilla Tag VR Content Creator</p>
-  </header>
+<header>
+  <img src="https://yt3.googleusercontent.com/95iYSE2UP41q5Kw5IvmGuZyu2ipRJ0LIFUqjiHdtJdxOAQhI34CgmkiaY-7Erb56mkL7W3ib=s160-c-k-c0x00ffffff-no-rj" alt="BroJamesVR">
+  <h1>BroJamesVR</h1>
+  <p>Gorilla Tag VR Creator & Fun VR Content</p>
+  <a class="btn" href="https://www.youtube.com/@brojamesvr" target="_blank">Visit My YouTube</a>
+</header>
 
-  <!-- About Me -->
-  <section class="about">
-    <h2>About Me</h2>
-    <p>Hi! I'm BroJamesVR, a Gorilla Tag VR content creator. I make fun VR videos, challenges, and tips for the Gorilla Tag community. Subscribe to my YouTube channel, follow me on social media, and join the Discord for updates and giveaways!</p>
-  </section>
+<nav>
+  <a href="#about">About</a>
+  <a href="#videos">Videos</a>
+  <a href="#community">Community</a>
+  <a href="#contact">Contact</a>
+</nav>
 
-  <!-- YouTube Video -->
-  <section class="videos">
-    <h2>Watch My Latest Video</h2>
-    <a href="https://www.youtube.com/watch?v=K774EMV6kfE" target="_blank">
-      <img src="https://img.youtube.com/vi/K774EMV6kfE/0.jpg" alt="BroJamesVR Video">
-    </a>
-    <p><a href="https://www.youtube.com/@brojamesvr" target="_blank">Visit my channel</a></p>
-  </section>
+<section id="about" class="section">
+<h2>👋 About Me</h2>
+<p>Hi! I'm BroJamesVR. I make Gorilla Tag VR videos and will start creating content for more VR games soon, so stay tuned! Join my community for fun VR content and events.</p>
+</section>
 
-  <!-- Social Media -->
-  <section class="social">
-    <!-- Discord Base64 PNG -->
-    <a href="https://discord.gg/rRyJYanKcD" target="_blank">
-      <img src="data:image/png;base64,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" alt="Discord">
-    </a>
-    <!-- You can add Instagram, TikTok, Twitter similarly with Base64 -->
-  </section>
+<section id="videos" class="section">
+  <h2>🎥 Latest Videos</h2>
+  <div class="card-grid">
 
-  <!-- Contact Form -->
-  <section class="contact-form">
-    <h2>Contact Me</h2>
-    <form id="contact-form" action="https://formspree.io/f/maqqnokg" method="POST">
-      <input type="text" name="name" placeholder="Your Name" required><br>
-      <input type="email" name="email" placeholder="Your Email" required><br>
-      <textarea name="message" rows="5" placeholder="Your Message" required></textarea><br>
-      <button type="submit">Send Message</button>
-    </form>
-    <p id="success-message" style="display:none; color:#ff0000;">Message sent! Thank you :)</p>
-  </section>
+    <!-- Newest video -->
+    <div class="card">
+      <a href="https://www.youtube.com/watch?v=K774EMV6kfE" target="_blank">
+        <img src="https://img.youtube.com/vi/K774EMV6kfE/maxresdefault.jpg" width="100%" style="border-radius:10px;">
+        <p>How to go viral on your VR YouTube Channel</p>
+        <div class="btn">Watch on YouTube</div>
+      </a>
+    </div>
 
-  <!-- Formspree AJAX -->
-  <script>
-    const form = document.getElementById("contact-form");
-    const success = document.getElementById("success-message");
+    <!-- Second newest video -->
+    <div class="card">
+      <a href="https://youtu.be/7CPn5n5laKg?si=g1mDDE6D38N3Blkt" target="_blank">
+        <img src="https://i.ytimg.com/vi/7CPn5n5laKg/hqdefault.jpg?sqp=-oaymwEnCNACELwBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLC_N9FV5liAhkEdBEgmwIB3KHKqwg" width="100%" style="border-radius:10px;">
+        <p>I know who @g.t404 is 🤫🤫</p>
+        <div class="btn">Watch on YouTube</div>
+      </a>
+    </div>
 
-    form.addEventListener("submit", function(e){
-      e.preventDefault();
-      fetch(form.action, {
-        method: "POST",
-        body: new FormData(form),
-        headers: { 'Accept': 'application/json' }
-      }).then(response => {
-        if (response.ok) {
-          success.style.display = "block";
-          form.reset();
-        } else {
-          alert("Oops! There was a problem sending your message.");
-        }
-      }).catch(() => {
-        alert("Oops! There was a problem sending your message.");
-      });
-    });
-  </script>
+    <!-- Third newest video -->
+    <div class="card">
+      <a href="https://youtu.be/igwnmZs6T7o?si=BJjLCOtl8ktr3g7h" target="_blank">
+        <img src="https://i.ytimg.com/an_webp/igwnmZs6T7o/mqdefault_6s.webp?du=3000&sqp=CNjQpcsG&rs=AOn4CLCBpbCf1P6Eolv2LYgQmowYY125yw" width="100%" style="border-radius:10px;">
+        <p>Easiest Way to Make Gorilla Tag Blender Profile Pictures!</p>
+        <div class="btn">Watch on YouTube</div>
+      </a>
+    </div>
 
-  <!-- Footer -->
-  <footer>
-    <p>© 2026 BroJamesVR | <a href="https://www.youtube.com/@brojamesvr" target="_blank">YouTube</a> | <a href="https://discord.gg/rRyJYanKcD" target="_blank">Discord</a></p>
-  </footer>
+    <!-- Fourth newest video -->
+    <div class="card">
+      <a href="https://youtu.be/qmeMYSgQzeM?si=Dc6I0UPYwhyDaxg2" target="_blank">
+        <img src="https://i.ytimg.com/an_webp/qmeMYSgQzeM/mqdefault_6s.webp?du=3000&sqp=CMLmpcsG&rs=AOn4CLDqIquMXIRfCvx6VtAcKcq34shp8w" width="100%" style="border-radius:10px;">
+        <p>How I Got 1,000 Subs on My VR YouTube Channel (FAST + Easy Strategy)</p>
+        <div class="btn">Watch on YouTube</div>
+      </a>
+    </div>
+
+    <!-- Fifth newest video -->
+    <div class="card">
+      <a href="https://youtu.be/QqObesy6QxU?si=J2rIl0dpSQRxPu2d" target="_blank">
+        <img src="https://i.ytimg.com/an_webp/QqObesy6QxU/mqdefault_6s.webp?du=3000&sqp=CNjcpcsG&rs=AOn4CLA9rTttYBVRnJi3lxtqHl2M9Mp84A" width="100%" style="border-radius:10px;">
+        <p>How I Got 1,000 Subs on My VR YouTube Channel (FAST + Easy Strategy)</p>
+        <div class="btn">Watch on YouTube</div>
+      </a>
+    </div>
+
+  </div>
+
+  <!-- Load More button (optional) -->
+  <div style="margin-top:30px;">
+    <button class="btn" onclick="alert('Load more videos coming soon!')">Load More</button>
+  </div>
+</section>
+
+<section id="community" class="section">
+<h2>💬 Join My Community</h2>
+<p>Hang out, chat, and stay updated with my latest VR content!</p>
+<div class="social-icons">
+  <a href="https://discord.gg/rRyJYanKcD" target="_blank">
+    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="Discord">
+  </a>
+</div>
+<a href="https://discord.gg/rRyJYanKcD" class="btn" style="margin-top:15px;" target="_blank">Join My Discord</a>
+</section>
+
+<section id="contact" class="section">
+<h2>✉ Contact Me</h2>
+<form action="https://formspree.io/f/maqqnokg" method="POST" style="display:flex; flex-direction:column; align-items:center; gap:10px;">
+  <input type="text" name="name" placeholder="Your Name" required style="padding:10px; width:70%; border-radius:10px; border:none;">
+  <input type="email" name="email" placeholder="Your Email" required style="padding:10px; width:70%; border-radius:10px; border:none;">
+  <textarea name="message" placeholder="Message" required style="padding:10px; width:70%; height:100px; border-radius:10px; border:none;"></textarea>
+  <button class="btn" type="submit">Send</button>
+</form>
+</section>
+
+<footer>
+<p>© 2026 BroJamesVR</p>
+<p><a href="https://www.youtube.com/@brojamesvr" target="_blank" style="color:white;">YouTube</a> | <a href="https://discord.gg/rRyJYanKcD" target="_blank" style="color:white;">Discord</a></p>
+</footer>
 
 </body>
 </html>
