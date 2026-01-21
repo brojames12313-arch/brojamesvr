@@ -4,7 +4,58 @@
 <meta charset="UTF-8">
 <title>BroJamesVR</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="css/style.css">
+<style>
+/* General Styles */
+body { margin:0; font-family: Arial, sans-serif; background: radial-gradient(circle at top, #111, #000); color:white; scroll-behavior:smooth; text-align:center; }
+a { text-decoration:none; color:inherit; }
+.btn { background:#ff0000; color:white; padding:12px 30px; border-radius:25px; display:inline-block; margin-top:15px; cursor:pointer; border:none; }
+.btn:hover { background:#cc0000; }
+
+/* Header */
+header { background: linear-gradient(90deg,#ff0000,#ff5500); padding:40px 20px; }
+header img { width:120px; border-radius:50%; border:4px solid white; }
+header h1 { margin:15px 0 5px; }
+header p { margin:0 0 15px; }
+
+/* Nav */
+nav { background:#111; display:flex; justify-content:center; gap:20px; padding:15px; }
+nav a { color:white; font-weight:bold; }
+nav a:hover { color:#ff0000; }
+
+/* Sections */
+.section { padding:60px 20px; }
+.card-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:20px; max-width:900px; margin:auto; }
+.card { background:#111; padding:20px; border-radius:12px; box-shadow:0 0 20px #ff000044; transition:0.3s; position:relative; overflow:hidden; }
+.card:hover { transform:translateY(-6px); }
+.card img { transition:0.3s; width:100%; border-radius:10px; }
+.card:hover img { transform:scale(1.05); }
+.card p { margin:10px 0 0; font-weight:bold; }
+
+/* Social Icons */
+.social-icons { display:flex; justify-content:center; gap:20px; margin-top:20px; }
+.social-icons img { width:50px; transition:0.3s; }
+.social-icons img:hover { transform:scale(1.2); }
+
+/* Footer */
+footer { background:#111; padding:30px 20px; color:#888; text-align:center; }
+
+/* Forms */
+input, textarea { padding:10px; width:70%; border-radius:10px; border:none; }
+textarea { height:100px; }
+form p.tip { font-style:italic; color:#ccc; margin-top:10px; font-size:0.9em; }
+
+/* Sign-In Modal */
+#signinModal { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); display:flex; align-items:center; justify-content:center; z-index:9999; flex-direction:column; color:white; }
+#signinModal div { background:#111; padding:30px; border-radius:15px; text-align:center; max-width:400px; width:90%; }
+#signinModal input { width:80%; margin:10px 0; border-radius:8px; border:none; padding:10px; }
+#signinModal button { margin:5px; }
+.avatarOption { width:60px; cursor:pointer; border-radius:50%; border:2px solid transparent; }
+.avatarOption.selected { border:2px solid #ff0000; }
+
+/* Welcome Avatar */
+#welcomeMsg { display:flex; align-items:center; justify-content:center; gap:10px; font-weight:bold; font-size:1.2em; margin-top:15px; }
+#welcomeMsg img { width:40px; height:40px; border-radius:50%; }
+</style>
 </head>
 <body>
 
@@ -14,7 +65,7 @@
     <h2>Sign In</h2>
     <input type="text" id="usernameInput" placeholder="Enter your name">
     <p>Choose your avatar:</p>
-    <div id="avatarOptionsContainer">
+    <div style="display:flex; justify-content:center; gap:10px; flex-wrap:wrap;">
       <img class="avatarOption" src="https://i.imgur.com/abcd1.png" data-logo="https://i.imgur.com/abcd1.png" alt="Logo 1">
       <img class="avatarOption" src="https://i.imgur.com/abcd2.png" data-logo="https://i.imgur.com/abcd2.png" alt="Logo 2">
       <img class="avatarOption" src="https://i.imgur.com/abcd3.png" data-logo="https://i.imgur.com/abcd3.png" alt="Logo 3">
@@ -42,9 +93,7 @@
   <a href="#contact">Contact</a>
 </nav>
 
-<div id="welcomeMsg">
-  <button id="editProfileBtn" class="btn" style="margin-left:10px; display:none;">Edit Profile</button>
-</div>
+<div id="welcomeMsg"></div>
 
 <section id="about" class="section">
 <h2>👋 About Me</h2>
@@ -53,9 +102,7 @@
 
 <section id="videos" class="section">
 <h2>🎥 Latest Videos</h2>
-<div class="card-grid" id="videoGrid">
-  <!-- Initial videos injected by JS -->
-</div>
+<div class="card-grid" id="videoGrid"></div>
 <div style="margin-top:30px;">
   <button class="btn" id="loadMoreBtn">Load More</button>
 </div>
@@ -74,10 +121,8 @@
 
 <section id="feature-video" class="section">
 <h2>🎬 Have a Chance to Be in a Video!</h2>
-<p style="margin-bottom:15px; color:#ccc;">
-Want to appear in one of my VR videos or join a challenge? Fill out the form below and you might be featured!
-</p>
-<form action="https://formspree.io/f/maqqnokg" method="POST" onsubmit="return confirm('Are you sure you want to submit?');">
+<p style="margin-bottom:15px; color:#ccc;">Want to appear in one of my VR videos or join a challenge? Fill out the form below and you might be featured!</p>
+<form action="https://formspree.io/f/maqqnokg" method="POST" onsubmit="return confirm('Are you sure you want to submit?');" style="display:flex; flex-direction:column; align-items:center; gap:10px;">
   <input type="text" name="name" placeholder="Your Name or Nickname" required>
   <input type="email" name="email" placeholder="Your Email (real if you want me to respond)" required>
   <textarea name="message" placeholder="Why you want to be in a video or challenge" required></textarea>
@@ -89,7 +134,7 @@ Want to appear in one of my VR videos or join a challenge? Fill out the form bel
 <section id="fanart" class="section">
 <h2>🖼 Fanart Gallery</h2>
 <p style="margin-bottom:25px; color:#ccc;">Fan-made artwork from the community. Want to be featured? Send your art in Discord!</p>
-<div class="card-grid" id="fanartGrid">
+<div class="card-grid">
   <div class="card">
     <a href="https://i.imgur.com/gmqKDip.jpeg" target="_blank">
       <img src="https://i.imgur.com/gmqKDip.jpeg" alt="Fanart by Armond VRGT">
@@ -103,7 +148,7 @@ Want to appear in one of my VR videos or join a challenge? Fill out the form bel
 
 <section id="contact" class="section">
 <h2>✉ Contact Me</h2>
-<form action="https://formspree.io/f/maqqnokg" method="POST" onsubmit="return confirm('Are you sure you want to submit?');">
+<form action="https://formspree.io/f/maqqnokg" method="POST" onsubmit="return confirm('Are you sure you want to submit?');" style="display:flex; flex-direction:column; align-items:center; gap:10px;">
   <input type="text" name="name" placeholder="Your Name" required>
   <input type="email" name="email" placeholder="Your Email (real if you want me to respond)" required>
   <textarea name="message" placeholder="Message" required></textarea>
@@ -117,6 +162,83 @@ Want to appear in one of my VR videos or join a challenge? Fill out the form bel
 <p><a href="https://www.youtube.com/@brojamesvr" target="_blank" style="color:white;">YouTube</a> | <a href="https://discord.gg/rRyJYanKcD" target="_blank" style="color:white;">Discord</a></p>
 </footer>
 
-<script src="js/main.js"></script>
+<script>
+// Videos
+const videos = [
+  {title:"How to go viral on your VR YouTube Channel", url:"https://www.youtube.com/watch?v=K774EMV6kfE", img:"https://img.youtube.com/vi/K774EMV6kfE/maxresdefault.jpg"},
+  {title:"I know who @g.t404 is 🤫🤫", url:"https://youtu.be/7CPn5n5laKg?si=g1mDDE6D38N3Blkt", img:"https://i.ytimg.com/vi/7CPn5n5laKg/hqdefault.jpg"},
+  {title:"Easiest Way to Make Gorilla Tag Blender Profile Pictures!", url:"https://youtu.be/igwnmZs6T7o?si=BJjLCOtl8ktr3g7h", img:"https://i.ytimg.com/an_webp/igwnmZs6T7o/mqdefault_6s.webp?du=3000&sqp=CNjQpcsG&rs=AOn4CLCBpbCf1P6Eolv2LYgQmowYY125yw"},
+  {title:"How I Got 1,000 Subs on My VR YouTube Channel (FAST + Easy Strategy)", url:"https://youtu.be/qmeMYSgQzeM?si=Dc6I0UPYwhyDaxg2", img:"https://i.ytimg.com/an_webp/qmeMYSgQzeM/mqdefault_6s.webp?du=3000&sqp=CMLmpcsG&rs=AOn4CLDqIquMXIRfCvx6VtAcKcq34shp8w"},
+  {title:"How I Got 1,000 Subs on My VR YouTube Channel (FAST + Easy Strategy)", url:"https://youtu.be/QqObesy6QxU?si=J2rIl0dpSQRxPu2d", img:"https://i.ytimg.com/an_webp/QqObesy6QxU/mqdefault_6s.webp?du=3000&sqp=CNjcpcsG&rs=AOn4CLA9rTttYBVRnJi3lxtqHl2M9Mp84A"}
+];
+let videosLoaded = 0;
+const videoGrid = document.getElementById("videoGrid");
+function loadVideos() {
+  const nextVideos = videos.slice(videosLoaded, videosLoaded+2);
+  nextVideos.forEach(v=>{
+    const card = document.createElement("div");
+    card.className="card";
+    card.innerHTML=`<a href="${v.url}" target="_blank">
+      <img src="${v.img}" alt="">
+      <p>${v.title}</p>
+      <div class="btn">Watch on YouTube</div>
+    </a>`;
+    videoGrid.appendChild(card);
+  });
+  videosLoaded+=2;
+  if(videosLoaded >= videos.length) document.getElementById("loadMoreBtn").style.display="none";
+}
+
+// Sign-In + Avatar
+let selectedAvatar = null;
+const avatarOptions = document.querySelectorAll(".avatarOption");
+avatarOptions.forEach(img=>{
+  img.onclick=function(){
+    avatarOptions.forEach(a=>a.classList.remove("selected"));
+    this.classList.add("selected");
+    selectedAvatar = this.dataset.logo;
+  }
+});
+
+function showWelcome(name, avatar){
+  const welcome = document.getElementById("welcomeMsg");
+  welcome.innerHTML=`<img src="${avatar}"> Welcome, ${name}!`;
+}
+
+window.onload = function(){
+  const user = localStorage.getItem("username");
+  const avatar = localStorage.getItem("avatar");
+  if(user){
+    document.getElementById("signinModal").style.display="none";
+    showWelcome(user, avatar);
+    loadVideos();
+  } else {
+    document.getElementById("signinModal").style.display="flex";
+  }
+};
+
+document.getElementById("signInBtn").onclick=function(){
+  const name = document.getElementById("usernameInput").value.trim();
+  if(name!==""){
+    localStorage.setItem("username", name);
+    localStorage.setItem("avatar", selectedAvatar||"https://i.imgur.com/placeholder.png");
+    document.getElementById("signinModal").style.display="none";
+    showWelcome(name, selectedAvatar||"https://i.imgur.com/placeholder.png");
+    loadVideos();
+  } else alert("Please enter your name!");
+};
+
+document.getElementById("continueBtn").onclick=function(){
+  const guestAvatar = "https://i.imgur.com/3Vt5tQf.png"; // Indigo-style guest
+  localStorage.setItem("username","Guest");
+  localStorage.setItem("avatar",guestAvatar);
+  document.getElementById("signinModal").style.display="none";
+  showWelcome("Guest",guestAvatar);
+  loadVideos();
+};
+
+document.getElementById("loadMoreBtn").onclick = loadVideos;
+</script>
+
 </body>
 </html>
